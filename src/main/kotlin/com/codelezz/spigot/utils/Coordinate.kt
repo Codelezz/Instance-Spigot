@@ -86,9 +86,7 @@ data class Coordinate(
      * [Double.MAX_VALUE]
      */
     fun distanceSquared(world: String?, x: Double, y: Double, z: Double) =
-        if (world != this.world) Double.MAX_VALUE else (x - this.x).pow(2.0) + (y - this.y).pow(2.0) + (z - this.z).pow(
-            2.0
-        )
+        if (world != this.world) Double.MAX_VALUE else distanceSquared2d(world, x, z) + (y - this.y).pow(2.0)
 
     /**
      * Returns the squared distance between this location and another.
