@@ -22,13 +22,7 @@ import java.util.concurrent.CompletableFuture
  * }
  */
 fun JavaPlugin.launch(async: Boolean = true, block: suspend CoroutineScope.() -> Unit) =
-    GlobalScope.launch(this.dispatcher(async)) {
-        try {
-            block()
-        } catch (e: Throwable) {
-            throw e
-        }
-    }
+    GlobalScope.launch(this.dispatcher(async), block = block)
 
 /**
  * Launches code on a thread (default async).
@@ -43,13 +37,7 @@ fun JavaPlugin.launch(async: Boolean = true, block: suspend CoroutineScope.() ->
  * }
  */
 fun <T : Any?> JavaPlugin.async(async: Boolean = true, block: suspend CoroutineScope.() -> T?): Deferred<T?> =
-    GlobalScope.async(this.dispatcher(async)) {
-        try {
-            block()
-        } catch (e: Throwable) {
-            throw e
-        }
-    }
+    GlobalScope.async(this.dispatcher(async), block = block)
 
 /**
  * Launch a code on a thread (default async) and get the result on a completable future.

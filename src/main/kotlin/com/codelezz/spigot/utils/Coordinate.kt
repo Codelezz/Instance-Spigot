@@ -68,19 +68,25 @@ data class Coordinate(
 
     /**
      * Returns the squared distance between this location and another.
-     * If the two locations are in differnt worlds this will return
+     * If the two locations are in different worlds this will return
      * [Double.MAX_VALUE]
      */
-    infix fun distanceSquared(wl: Coordinate): Double =
-        if (wl.world != world) Double.MAX_VALUE else (wl.x - x).pow(2.0) + (wl.y - y).pow(2.0) + (wl.z - z).pow(2.0)
+    infix fun distanceSquared(wl: Coordinate): Double = distanceSquared(wl.world, wl.x, wl.y, wl.z)
 
     /**
      * Returns the squared distance between this location and another.
-     * If the two locations are in differnt worlds this will return
+     * If the two locations are in different worlds this will return
      * [Double.MAX_VALUE]
      */
-    infix fun distanceSquared(wl: Location): Double =
-        if (wl.world?.name != world) Double.MAX_VALUE else (wl.x - x).pow(2.0) + (wl.y - y).pow(2.0) + (wl.z - z).pow(
+    infix fun distanceSquared(wl: Location): Double = distanceSquared(wl.world.name, wl.x, wl.y, wl.z)
+
+    /**
+     * Returns the squared distance between this location and another.
+     * If the two locations are in different worlds this will return
+     * [Double.MAX_VALUE]
+     */
+    fun distanceSquared(world: String?, x: Double, y: Double, z: Double) =
+        if (world != this.world) Double.MAX_VALUE else (x - this.x).pow(2.0) + (y - this.y).pow(2.0) + (z - this.z).pow(
             2.0
         )
 
@@ -92,19 +98,28 @@ data class Coordinate(
      *
      * This variant will not take the Y into account.
      */
-    infix fun distanceSquared2d(wl: Coordinate): Double =
-        if (wl.world != world) Double.MAX_VALUE else (wl.x - x).pow(2.0) + (wl.z - z).pow(2.0)
+    infix fun distanceSquared2d(wl: Coordinate): Double = distanceSquared2d(wl.world, wl.x, wl.z)
 
     /**
      * Returns the squared distance between this location and another.
-     * If the two locations are in differnt worlds this will return
+     * If the two locations are in different worlds this will return
      * [Double.MAX_VALUE]
      *
      *
      * This variant will not take the Y into account.
      */
-    infix fun distanceSquared2d(wl: Location): Double =
-        if (wl.world?.name != world) Double.MAX_VALUE else (wl.x - x).pow(2.0) + (wl.z - z).pow(2.0)
+    infix fun distanceSquared2d(wl: Location): Double = distanceSquared2d(wl.world.name, wl.x, wl.z)
+
+    /**
+     * Returns the squared distance between this location and another.
+     * If the two locations are in different worlds this will return
+     * [Double.MAX_VALUE]
+     *
+     *
+     * This variant will not take the Y into account.
+     */
+    fun distanceSquared2d(world: String?, x: Double, z: Double): Double =
+        if (world != this.world) Double.MAX_VALUE else (x - this.x).pow(2.0) + (z - this.z).pow(2.0)
 
     /**
      * Returns the squared distance between this location and another.
