@@ -1,0 +1,6 @@
+name: Codelezz
+version: 0.0.1
+load: STARTUP
+author: Aeltumn
+website: https://codelezz.com/#/
+main: com.codelezz.spigot.Codelezz

@@ -1,2 +1,4 @@
-# Instance-Spigot
- Ability to create instances on a spigot server
+# Codelezz spigot instance
+
+This spigot plugin installed to be used with modules created on [codelezz.com](https://codelezz.com)
+
