@@ -1,7 +1,5 @@
 package com.codelezz.spigot.backend
 
-import com.codelezz.spigot.Codelezz.Companion.plugin
-
 object Backend {
 
 	/**
@@ -13,5 +11,7 @@ object Backend {
 	 * Guidance will be given to the players that can connect this instance.
 	 */
 	fun init() {
+		println("Token: $authToken")
 	}
 }
+
