@@ -50,8 +50,8 @@ dependencies {
 
 	implementation(kotlin("stdlib"))
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
-	implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.21")
 
+	implementation("com.codelezz.instances:Codelezz-Kotlin-Instance:+")
 	implementation("com.okkero.skedule:skedule:1.2.6")
 
 	testImplementation("junit", "junit", "4.12")

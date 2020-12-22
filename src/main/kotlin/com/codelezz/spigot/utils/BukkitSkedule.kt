@@ -1,7 +1,9 @@
 @file:JvmName("Async")
 @file:Suppress("unused")
+
 package com.codelezz.spigot.utils
 
+import com.codelezz.kotlin.utils.catch
 import com.codelezz.spigot.Codelezz.Companion.plugin
 import com.okkero.skedule.BukkitDispatcher
 import com.okkero.skedule.dispatcher
@@ -22,7 +24,7 @@ import java.util.concurrent.CompletableFuture
  * }
  */
 fun JavaPlugin.launch(async: Boolean = true, block: suspend CoroutineScope.() -> Unit) =
-    GlobalScope.launch(this.dispatcher(async), block = block)
+	GlobalScope.launch(this.dispatcher(async), block = block)
 
 /**
  * Launches code on a thread (default async).
@@ -37,7 +39,7 @@ fun JavaPlugin.launch(async: Boolean = true, block: suspend CoroutineScope.() ->
  * }
  */
 fun <T : Any?> JavaPlugin.async(async: Boolean = true, block: suspend CoroutineScope.() -> T?): Deferred<T?> =
-    GlobalScope.async(this.dispatcher(async), block = block)
+	GlobalScope.async(this.dispatcher(async), block = block)
 
 /**
  * Launch a code on a thread (default async) and get the result on a completable future.
@@ -56,26 +58,26 @@ fun <T : Any> JavaPlugin.launchFuture(
     async: Boolean = true,
     block: suspend CoroutineScope.() -> T
 ): CompletableFuture<T> {
-    val cf: CompletableFuture<T> = CompletableFuture()
-    launch(async) {
-        catch<Exception>(err = {
+	val cf: CompletableFuture<T> = CompletableFuture()
+	launch(async) {
+		catch<Exception>(err = {
             cf.completeExceptionally(it)
         }) {
-            val t = block()
-            cf.complete(t)
-        }
-    }
-    return cf
+			val t = block()
+			cf.complete(t)
+		}
+	}
+	return cf
 }
 
 /**
  * Dispatches a coroutine on the main minecraft thread.
  */
 val Dispatchers.SYNC: BukkitDispatcher
-    get() = plugin.dispatcher(false)
+	get() = plugin.dispatcher(false)
 
 /**
  * Dispatches a coroutine on an async minecraft thread.
  */
 val Dispatchers.ASYNC: BukkitDispatcher
-    get() = plugin.dispatcher(true)
+	get() = plugin.dispatcher(true)
