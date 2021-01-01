@@ -14,6 +14,7 @@ plugins {
 	java
 	idea
 	maven
+	`maven-publish`
 	id("com.github.johnrengelman.shadow") version "5.2.0"
 	kotlin("jvm") version "1.4.20"
 }
@@ -33,6 +34,28 @@ idea {
 
 val minecraftVersion = "1.8.8-R0.1-SNAPSHOT"
 
+publishing {
+	repositories {
+		maven {
+			name = "GitHubPackages"
+			url = uri("https://maven.pkg.github.com/codelezz/spigot-instance")
+			credentials {
+				username = System.getenv("GITHUB_ACTOR")
+				password = System.getenv("GITHUB_TOKEN")
+			}
+		}
+	}
+	publications {
+		create<MavenPublication>("gpr") {
+			artifactId = "codelezz-spigot-instance"
+			from(components["java"])
+		}
+		create<MavenPublication>("mavenJava") {
+			artifactId = "codelezz-spigot-instance"
+			from(components["java"])
+		}
+	}
+}
 
 repositories {
 	jcenter()
@@ -52,7 +75,7 @@ dependencies {
 	implementation(kotlin("stdlib"))
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
 
-	implementation("com.codelezz.instances:Codelezz-Kotlin-Instance:+")
+	implementation("com.codelezz.instances:codelezz-kotlin-instance:+")
 	implementation("com.okkero.skedule:skedule:1.2.6")
 
 	testImplementation("junit", "junit", "4.12")

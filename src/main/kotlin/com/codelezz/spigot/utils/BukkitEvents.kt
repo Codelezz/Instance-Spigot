@@ -26,3 +26,8 @@ fun Plugin.registerEvents(
     listener,
     this
 )
+
+/**
+ * Dispose the listener and unregister all events.
+ */
+fun Listener.dispose() = HandlerList.unregisterAll(this)

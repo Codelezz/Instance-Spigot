@@ -6,8 +6,6 @@ import org.bukkit.plugin.java.JavaPlugin
 
 class Codelezz : JavaPlugin() {
 	companion object {
-		/// Firebase api keys can be publicly available.
-		const val firebaseApiKey: String = "AIzaSyAxuGMDUrIqBb-Xnn4AzyuKeMqWj8xQtd0"
 		lateinit var plugin: Codelezz
 	}
 
