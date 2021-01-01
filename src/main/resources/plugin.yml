@@ -4,3 +4,10 @@ load: STARTUP
 author: Aeltumn
 website: https://codelezz.com/#/
 main: com.codelezz.spigot.Codelezz
+commands:
+  codelezz:
+    description: Change the function of codelezz.
+    aliases: [ code, c ]
+    permission-message: You do not have permission to use this command.
+    usage: "Usage: /codelezz [reload]"
+    permission: codelezz.reload

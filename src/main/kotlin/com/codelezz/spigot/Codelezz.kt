@@ -1,11 +1,12 @@
 package com.codelezz.spigot
 
-import com.codelezz.spigot.backend.Backend
+import com.codelezz.kotlin.CodelezzBase
+import com.codelezz.spigot.commands.CodelezzCommand
 import org.bukkit.plugin.java.JavaPlugin
 
 class Codelezz : JavaPlugin() {
 	companion object {
-		lateinit var plugin: Codelezz;
+		lateinit var plugin: Codelezz
 	}
 
 	override fun onLoad() {
@@ -13,7 +14,7 @@ class Codelezz : JavaPlugin() {
 	}
 
 	override fun onEnable() {
-		Backend.init()
+		CodelezzBase.initialize(dataFolder)
+		getCommand("codelezz").executor = CodelezzCommand()
 	}
-
 }
